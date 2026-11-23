@@ -15,6 +15,14 @@ three.js 장면을 두꺼운 유화 붓터치로 그려내는 이펙트 데모�
 - **웹 실행 (GitHub Pages):** https://sigco3111.github.io/oil-paint-ko/
 - 좌하단 버튼으로 두 장면을 오갈 수 있습니다. 소리는 없습니다.
 
+## 실행 화면
+
+배포된 한국어판 실행 장면입니다.
+
+| 오로라 | 가을 숲 |
+|---|---|
+| ![오로라 장면](docs/scene-aurora.png) | ![가을 숲 장면](docs/scene-autumn.png) |
+
 ## 조작법
 
 | 입력 | 동작 |
