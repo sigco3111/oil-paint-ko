@@ -1,31 +1,34 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Oil paint</title>
+    <title>유화 Oil paint</title>
     <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400&text=%201ADSVWacefhipt%C2%B7%EA%B0%80%EA%B0%90%EA%B1%B8%EA%B8%B0%EB%82%98%EB%88%88%EB%8A%94%EB%8B%AC%EB%8D%B0%EB%8F%99%EB%91%98%EB%95%85%EB%9D%BC%EB%9E%91%EB%9F%AC%EB%A0%A4%EB%A1%9C%EB%A5%BC%EB%A6%AC%EB%A6%AD%EB%AC%BC%EB%B0%A9%EB%B3%B4%EB%B6%93%EC%84%9E%EC%88%B2%EC%8B%9C%EC%8C%93%EC%97%AC%EC%98%A4%EC%9A%B0%EC%9C%A0%EC%9D%84%EC%9D%8C%EC%9D%B4%EC%9D%B8%EC%9E%90%EC%A0%90%EC%A4%91%EC%A7%88%EC%B2%AB%EC%B9%A0%EC%B9%AD%ED%81%B4%ED%82%A4%ED%94%84%ED%95%98%ED%95%9C%ED%99%94%ED%9C%A0&display=swap" />
     <style>
       html, body { margin: 0; height: 100%; background: #1c1512; overflow: hidden; }
       #view, #view canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
-      #loading { position: fixed; inset: 0; display: grid; place-items: center; color: #d9b98a; font: 15px/1.4 Georgia, serif; letter-spacing: 0.08em; }
-      #hint { position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%); color: #f3e3c3; font: 14px/1.4 Georgia, serif; letter-spacing: 0.04em;
+      #loading { position: fixed; inset: 0; display: grid; place-items: center; color: #d9b98a; font: 15px/1.4 'Noto Serif KR', Georgia, serif; letter-spacing: 0.08em; }
+      #hint { position: fixed; left: 50%; bottom: 26px; transform: translateX(-50%); color: #f3e3c3; font: 14px/1.4 'Noto Serif KR', Georgia, serif; letter-spacing: 0.04em;
         background: rgba(28, 20, 18, 0.55); padding: 8px 16px; border-radius: 3px; transition: opacity 2s; pointer-events: none; white-space: nowrap; }
       #hint.faded { opacity: 0; }
       #hint.off { display: none; }
       html[data-scene='aurora'] body { background: #061219; }
       html[data-scene='aurora'] #loading { color: #9fd8c4; }
       #scenes { position: fixed; left: 18px; bottom: 18px; display: flex; gap: 6px; }
-      #scenes button { font: 13px/1 Georgia, serif; letter-spacing: 0.04em; color: #f3e3c3; background: rgba(28, 20, 18, 0.55); border: 1px solid rgba(243, 227, 195, 0.25);
+      #scenes button { font: 13px/1 'Noto Serif KR', Georgia, serif; letter-spacing: 0.04em; color: #f3e3c3; background: rgba(28, 20, 18, 0.55); border: 1px solid rgba(243, 227, 195, 0.25);
         padding: 8px 12px; border-radius: 3px; cursor: pointer; }
       #scenes button.on { background: rgba(243, 227, 195, 0.9); color: #1c1512; cursor: default; }
     </style>
   </head>
   <body>
     <div id="view"></div>
-    <div id="loading">Mixing paint</div>
-    <div id="scenes"><button data-scene="aurora" tabindex="-1">Aurora</button><button data-scene="autumn" tabindex="-1">Autumn wood</button></div>
-    <div id="hint">Click to look · WASD move · Shift sprint · Space jump · wheel to step back</div>
+    <div id="loading">물감을 섞는 중</div>
+    <div id="scenes"><button data-scene="aurora" tabindex="-1">오로라</button><button data-scene="autumn" tabindex="-1">가을 숲</button></div>
+    <div id="hint">클릭하여 둘러보기 · WASD 이동 · Shift 달리기 · Space 점프 · 휠로 한 걸음 물러나기</div>
     <script type="module" src="/src/boot.js"></script>
   </body>
 </html>

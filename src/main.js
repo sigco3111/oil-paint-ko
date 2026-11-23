@@ -37,7 +37,7 @@ const block = patchBlock({
   onTrigger() {},
   onVisible(visible) { shown = visible; if (loaded) run(); },
 });
-block.progress(0.03, 'Laying the ground');
+block.progress(0.03, '땅을 칠하는 중');
 const timings = {};
 let mark = performance.now();
 const lap = (name) => { const now = performance.now(); timings[name] = Math.round(now - mark); mark = now; };
@@ -68,13 +68,13 @@ lap('start');
 // the wanderer's files are the large ones: they start coming down now, while the wood is made
 let told = 0;
 const say = (value, label) => { told = Math.max(told, value); block.progress(told, label); };
-const figureComing = createFigure(shared, (done) => say(0.05 + 0.55 * done, 'Fetching the wanderer'));
+const figureComing = createFigure(shared, (done) => say(0.05 + 0.55 * done, '방랑자를 데려오는 중'));
 
 const turn = () => new Promise((resolve) => setTimeout(resolve, 0));
-await prepareLand((done) => { say(0.03 + 0.07 * done, 'Laying the ground'); return turn(); });
+await prepareLand((done) => { say(0.03 + 0.07 * done, '땅을 칠하는 중'); return turn(); });
 const land = createLand(shared);
 lap('land');
-say(0.1, 'Growing the wood');
+say(0.1, '숲을 키우는 중');
 await turn();
 const forest = createForest(shared);
 lap('forest');
@@ -83,7 +83,7 @@ const sky = createSky(shared);
 const leaves = createLeaves(shared, 2400);
 const shade = createShade(renderer, shared, forest.shade);
 lap('shade');
-say(0.25, 'Fetching the wanderer');
+say(0.25, '방랑자를 데려오는 중');
 await turn();
 const kick = createKick(shared);
 scene.add(sky.group, land.mesh, forest.group, floor.group, leaves.mesh, kick.mesh);
@@ -202,7 +202,7 @@ window.lab = {
 };
 
 // --- warming up: every shader is built and drawn once, and the GPU has caught up, before anyone is let in ---
-say(0.68, 'Mixing paint');
+say(0.68, '물감을 섞는 중');
 /** Resolves when the GPU has done everything it has been sent: JavaScript finishing isn't the GPU finishing. */
 function gpuDone() {
   const gl = renderer.getContext();
@@ -221,13 +221,13 @@ if (!capture) {
   renderer.debug.checkShaderErrors = false;
   await renderer.compileAsync(scene, camera);
   lap('shaders');
-  say(0.86, 'Mixing paint');
+  say(0.86, '물감을 섞는 중');
 }
 for (let i = 0; i < (capture ? 1 : 5); i++) {
   tick(1 / 60);
   if (capture) break;
   await gpuDone();
-  say(0.88 + 0.025 * i, 'First strokes');
+  say(0.88 + 0.025 * i, '첫 붓질');
   await turn();
 }
 lap('first frame');

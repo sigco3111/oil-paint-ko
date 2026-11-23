@@ -38,7 +38,7 @@ const block = patchBlock({
   onTrigger() {},
   onVisible(visible) { shown = visible; if (loaded) run(); },
 });
-block.progress(0.03, 'Laying the ground');
+block.progress(0.03, '땅을 칠하는 중');
 const timings = {};
 let mark = performance.now();
 const lap = (name) => { const now = performance.now(); timings[name] = Math.round(now - mark); mark = now; };
@@ -94,13 +94,13 @@ const NIGHT_CLOTHES = {
 };
 let told = 0;
 const say = (value, label) => { told = Math.max(told, value); block.progress(told, label); };
-const figureComing = createFigure(shared, (done) => say(0.05 + 0.55 * done, 'Fetching the wanderer'), NIGHT_CLOTHES);
+const figureComing = createFigure(shared, (done) => say(0.05 + 0.55 * done, '방랑자를 데려오는 중'), NIGHT_CLOTHES);
 
 const turn = () => new Promise((resolve) => setTimeout(resolve, 0));
-await prepareLand((done) => { say(0.03 + 0.09 * done, 'Laying the ground'); return turn(); });
+await prepareLand((done) => { say(0.03 + 0.09 * done, '땅을 칠하는 중'); return turn(); });
 const land = createLand(shared);
 lap('land');
-say(0.12, 'Laying the snow');
+say(0.12, '눈을 쌓는 중');
 await turn();
 const snow = createSnow(shared);
 const pines = createPines(shared);
@@ -116,7 +116,7 @@ const lantern = createLantern(shared);
 // the moon sees the whole ridge: its picture of the shade is what lays the horns' shadow down the snow
 const shade = createShade(renderer, shared, land.shade, { sun: MOON, size: [4096, 3072], box: [740, 560], centre: [0, 150, 0], back: 1600, near: 700, far: 2500 });
 lap('shade');
-say(0.25, 'Fetching the wanderer');
+say(0.25, '방랑자를 데려오는 중');
 await turn();
 scene.add(sky.group, far.group, land.mesh, snow.group, pines.group, cabin.group, tracks.mesh, lantern.object, lantern.glow, drift);
 
@@ -313,7 +313,7 @@ window.lab = {
   trail(z0, z1) { tracks.lay(crestX, z0, z1); },
 };
 
-say(0.68, 'Mixing paint');
+say(0.68, '물감을 섞는 중');
 function gpuDone() {
   const gl = renderer.getContext();
   const sync = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0);
@@ -331,13 +331,13 @@ if (!capture) {
   renderer.debug.checkShaderErrors = false;
   await renderer.compileAsync(scene, camera);
   lap('shaders');
-  say(0.86, 'Mixing paint');
+  say(0.86, '물감을 섞는 중');
 }
 for (let i = 0; i < (capture ? 1 : 5); i++) {
   tick(1 / 60);
   if (capture) break;
   await gpuDone();
-  say(0.88 + 0.025 * i, 'First strokes');
+  say(0.88 + 0.025 * i, '첫 붓질');
   await turn();
 }
 lap('first frame');
@@ -353,7 +353,7 @@ function run() {
 }
 if (!capture) {
   const hint = document.getElementById('hint');
-  hint.textContent = 'Click to look · WASD move · Shift sprint · Space jump · V first person';
+  hint.textContent = '클릭하여 둘러보기 · WASD 이동 · Shift 달리기 · Space 점프 · V 1인칭 시점';
   addEventListener('keydown', (e) => { if (e.code === 'KeyH') hint.classList.toggle('off'); });
   setTimeout(() => hint.classList.add('faded'), 9000);
 }
